@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SiswaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,9 +42,13 @@ Route::middleware('auth')->group(function () {
         Route::get('users', [UsersController::class, 'index'])->name('master.users');
         Route::put('/users/{id}/role', [UsersController::class, 'updateRole'])->name('master.users.updateRole');
         Route::post('/users/store-ajax', [UsersController::class, 'storeAjax'])->name('master.users.store');
-
+        // route akses
         Route::resource('roles', RoleController::class)->names('master.roles');
         Route::resource('permissions', PermissionController::class)->names('master.permissions');
+
+        // route siswa
+        Route::get('siswa', [SiswaController::class, 'index'])->name('master.siswa');
+
     });
 
     // Rute untuk logout

@@ -64,4 +64,14 @@ class User extends Authenticatable
                 $query->where('slug', $permission);
             })->exists();
     }
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class);
+    }
+
+    public function guru()
+    {
+        return $this->hasOne(Guru::class);
+    }
 }
