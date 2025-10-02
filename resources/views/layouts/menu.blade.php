@@ -106,7 +106,7 @@
               @endpermission
               @permission('index_siswa')
               <li class="nav-item">
-                <a href="{{route('master.siswa')}}" class="nav-link {{ request()->is('master/siswa*') ? 'active' : '' }}">
+                <a href="{{route('master.siswa.index')}}" class="nav-link {{ request()->is('master/siswa*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Siswa</p>
                 </a>

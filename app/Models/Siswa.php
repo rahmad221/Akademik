@@ -9,11 +9,11 @@ class Siswa extends Model
 {
     use HasFactory;
     protected $table = 'siswa';
-    protected $fillable = ['user_id', 'nis', 'nama_lengkap', 'tanggal_lahir', 'kelas_id'];
+    protected $fillable = ['user_id', 'nis', 'nama_lengkap', 'tanggal_lahir', 'kelas_id','tahun_pembelajaran','no_hp','jenis_kelamin','foto','alamat','tempat_lahir'];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function kelas()

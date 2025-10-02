@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('permissions', PermissionController::class)->names('master.permissions');
 
         // route siswa
-        Route::get('siswa', [SiswaController::class, 'index'])->name('master.siswa');
+        Route::resource('siswa', SiswaController::class)->names('master.siswa');
 
     });
 

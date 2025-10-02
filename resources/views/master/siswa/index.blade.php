@@ -18,9 +18,11 @@
                             data-target="#modal-primary">
                             <i class="fa-solid fa-upload"></i> Import
                         </button> -->
-                        <a type="button" href="#" class="btn btn-success btn-xs float-right mr-2" >
+              @permission('tambah_siswa')
+                        <a type="button" href="{{route('master.siswa.create')}}" class="btn btn-success btn-xs float-right mr-2" >
                             <i class="fa fa-plus"></i> Tambah
                         </a>
+                        @endpermission
                     </div>
 
                     <!-- /.card-header -->
@@ -31,12 +33,30 @@
                                     <th class="text-center text-indigo">NIS</th>
                                     <th class="text-center text-indigo">Nama</th>
                                     <th class="text-center text-indigo">Jenis Kelamin</th>
+                                    <th class="text-center text-indigo">Kelas</th>
                                     <th class="text-center text-indigo">Tahun Masuk</th>
                                     <th class="text-center text-indigo">#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                              
+                            @foreach($siswa as $sws)
+                                <tr>
+                                    <td>{{$sws->nis}}</td>
+                                    <td>{{$sws->nama_lengkap}}</td>
+                                    <td>
+                                        @if($sws->jenis_kelamin=='L')
+                                        Laki-laki
+                                        @else
+                                        Perempuan
+                                        @endif
+                                    </td>
+                                    <td>{{$sws->kelas->nama_kelas}}</td>
+                                    <td>{{$sws->tahun_pembelajaran}}</td>
+                                    <td>
+                                        <a type="button" href="{{ route('master.siswa.show',$sws->id) }}" class="btn btn-block bg-gradient-info btn-xs">Detail</a>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
