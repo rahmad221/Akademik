@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'master'], function () {
         Route::get('users', [UsersController::class, 'index'])->name('master.users');
         Route::put('/users/{id}/role', [UsersController::class, 'updateRole'])->name('master.users.updateRole');
+        Route::post('/users/store-ajax', [UsersController::class, 'storeAjax'])->name('master.users.store');
 
         Route::resource('roles', RoleController::class)->names('master.roles');
         Route::resource('permissions', PermissionController::class)->names('master.permissions');

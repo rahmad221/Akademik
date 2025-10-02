@@ -71,35 +71,48 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="tombol_form_create">
+                @csrf
                 <div class="modal-header">
-                    <h4 class="modal-title">User</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h4 class="modal-title">Tambah User</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
+
                 <div class="modal-body">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <span>Kode Guru</span>
-                            <input type="text" class="form-control form-control-sm" name="noinduk" id="noinduk"
-                                autocomplete="off" placeholder="102030" value="{{ old('noinduk') }}">
-                            <span>Nama Guru</span>
-                            <input type="text" class="form-control form-control-sm" name="namaguru" id="namaguru"
-                                autocomplete="off" placeholder="Kevin Alfarisi" value="{{ old('namaguru') }}">
-                            <span>Email</span>
-                            <input type="text" class="form-control form-control-sm" name="email" id="email"
-                                autocomplete="off" placeholder="Kevin Alfarisi" value="{{ old('email') }}">
-                        </div>
+                    <div class="form-group">
+                        <span>Nama</span>
+                        <input type="text" class="form-control form-control-sm" name="name" id="nama" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Email</span>
+                        <input type="email" class="form-control form-control-sm" name="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Password</span>
+                        <input type="password" class="form-control form-control-sm" name="password" id="password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Role</span>
+                        <select class="form-control form-control-sm" name="role_id" id="role_id" required>
+                            <option value="">-- Pilih Role --</option>
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
+
                 <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-info btn-sm">Simpan</button>
-                    <button type="button" class="btn btn-default float-right btn-sm" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Batal</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <!-- modal edit user -->
 
 <div class="modal fade" id="modal-edit" data-backdrop="static">
@@ -168,5 +181,40 @@ $(document).on("click", ".btn-edit-user", function () {
     $("#formEditUser").attr("action", "/master/users/" + userId + "/role");
 });
 
+$('#tombol_form_create').on('submit', function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: "{{ route('master.users.store') }}",
+        type: "POST",
+        data: $(this).serialize(),
+            success: function (res) {
+                if (res.success) {
+                    // Tambahkan user baru ke tabel tanpa reload
+                    $('#example2 tbody').append(`
+                        <tr>
+                            <td>${res.data.id}</td>
+                            <td>${res.data.name}</td>
+                            <td>${res.data.email}</td>
+                            <td>${res.data.role}</td>
+                            <td><button class="btn btn-warning btn-xs">Edit Role</button></td>
+                        </tr>
+                    `);
+
+                    $('#modal-tambah').modal('hide');
+                    $('#tombol_form_create')[0].reset();
+                    toastr.success(res.message);
+                }
+            },
+            error: function (xhr) {
+                let errors = xhr.responseJSON.errors;
+                let errorMessage = '';
+                $.each(errors, function (key, value) {
+                    errorMessage += value[0] + "<br>";
+                });
+                toastr.error(errorMessage);
+            }
+        });
+});
 </script>
 @endsection
