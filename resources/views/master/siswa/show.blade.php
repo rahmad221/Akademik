@@ -7,7 +7,9 @@
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Detail Siswa</h3>
+                @permission('edit_siswa')
                 <a href="{{ route('master.siswa.edit',$siswa->id) }}" class="btn btn-sm btn-warning float-right">Edit</a>
+                @endpermission
             </div>
             <div class="card-body">
                 <div class="row">

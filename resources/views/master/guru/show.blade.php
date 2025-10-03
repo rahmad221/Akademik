@@ -42,9 +42,11 @@
             <a href="{{ route('master.guru.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
+            @permission('edit_guru')
             <a href="{{ route('master.guru.edit', $guru->id) }}" class="btn btn-warning">
                 <i class="fas fa-edit"></i> Edit
             </a>
+            @endpermission
         </div>
     </div>
 </div>
