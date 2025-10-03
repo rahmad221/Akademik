@@ -65,6 +65,19 @@ class User extends Authenticatable
             })->exists();
     }
 
+    public function assignRole($roleName)
+    {
+        // Cari role berdasarkan name
+        $role = Role::where('name', $roleName)->first();
+
+        if ($role) {
+            // Attach role ke user jika belum ada
+            if (!$this->roles->contains($role->id)) {
+                $this->roles()->attach($role->id);
+            }
+        }
+    }
+
     public function siswa()
     {
         return $this->hasOne(Siswa::class);

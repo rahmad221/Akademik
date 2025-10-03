@@ -26,11 +26,10 @@
                         <table id="example2" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th class="text-center text-indigo">NIS</th>
-                                    <th class="text-center text-indigo">Nama</th>
-                                    <th class="text-center text-indigo">Jenis Kelamin</th>
-                                    <th class="text-center text-indigo">Kelas</th>
-                                    <th class="text-center text-indigo">Tahun Masuk</th>
+                                    <th class="text-center text-indigo">NIP</th>
+                                    <th class="text-center text-indigo">Nama Lengkap</th>
+                                    <th class="text-center text-indigo">No HP</th>
+                                    <th class="text-center text-indigo">Jabatan</th>
                                     <th class="text-center text-indigo">#</th>
                                 </tr>
                             </thead>
