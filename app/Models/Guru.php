@@ -20,4 +20,9 @@ class Guru extends Model
     {
         return $this->hasMany(Kelas::class, 'wali_kelas_id');
     }
+
+    public function jabatans()
+    {
+        return $this->belongsToMany(Jabatan::class, 'guru_jabatan');
+    }
 }

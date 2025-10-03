@@ -1,5 +1,5 @@
 @extends('layouts.menu')
-@section('title') Siswa @endsection
+@section('title') Guru @endsection
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
@@ -13,13 +13,9 @@
             <div class="col-md-8 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Siswa</h3>
-                        <!-- <button type="button" class="btn btn-xs btn-primary float-right" data-toggle="modal"
-                            data-target="#modal-primary">
-                            <i class="fa-solid fa-upload"></i> Import
-                        </button> -->
-              @permission('tambah_siswa')
-                        <a type="button" href="{{route('master.siswa.create')}}" class="btn btn-success btn-xs float-right mr-2" >
+                        <h3 class="card-title">Data Guru</h3>
+                        @permission('tambah_guru')
+                        <a type="button" href="{{route('master.guru.create')}}" class="btn btn-success btn-xs float-right mr-2" >
                             <i class="fa fa-plus"></i> Tambah
                         </a>
                         @endpermission
@@ -39,24 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($siswa as $sws)
-                                <tr>
-                                    <td>{{$sws->nis}}</td>
-                                    <td>{{$sws->nama_lengkap}}</td>
-                                    <td>
-                                        @if($sws->jenis_kelamin=='L')
-                                        Laki-laki
-                                        @else
-                                        Perempuan
-                                        @endif
-                                    </td>
-                                    <td>{{$sws->kelas->nama_kelas}}</td>
-                                    <td>{{$sws->tahun_pembelajaran}}</td>
-                                    <td>
-                                        <a type="button" href="{{ route('master.siswa.show',$sws->id) }}" class="btn btn-block bg-gradient-info btn-xs">Detail</a>
-                                    </td>
-                                </tr>
-                                @endforeach
+                            
                             </tbody>
                         </table>
                     </div>

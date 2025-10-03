@@ -112,12 +112,14 @@
                 </a>
               </li>
               @endpermission
+              @permission('index_guru')
               <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('master/guru*') ? 'active' : '' }}">
+                <a href="{{route('master.guru.index')}}" class="nav-link {{ request()->is('master/guru*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Guru</p>
                 </a>
               </li>
+              @endpermission
               <li class="nav-item">
               <a href="#" class="nav-link {{ request()->is('master/kelas*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
@@ -217,10 +219,10 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2014-2019 <a href="https://cyberdeveloper.my.id/">cyberdeveloper</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.1-pre
+      <b>Version</b> 1.0.0
     </div>
   </footer>
 </div>
