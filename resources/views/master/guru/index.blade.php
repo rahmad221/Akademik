@@ -34,7 +34,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
+                            @foreach($gurus as $guru)
+                                <tr>
+                                    <td>{{$guru->nip}}</td>
+                                    <td>{{$guru->nama_lengkap}}</td>
+                                    <td>{{$guru->no_hp}}</td>
+                                    <td>@foreach($guru->jabatans as $jab)
+                                    <span class="badge bg-info">{{ $jab->nama_jabatan }}</span>
+                                @endforeach</td>
+                                    <td>
+                                        <a type="button" href="{{ route('master.guru.show',$guru->id) }}" class="btn btn-block bg-gradient-info btn-xs">Detail</a>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -49,32 +61,6 @@
 </section>
 <!-- /.content -->
 
-
-<!-- modal upload -->
-<div class="modal fade" id="modal-primary" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Upload</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-info btn-sm">Upload</button>
-                    <button type="button" class="btn btn-default float-right btn-sm" data-dismiss="modal">Batal</button>
-                </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('script')

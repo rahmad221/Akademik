@@ -29,31 +29,31 @@ class UsersController extends Controller
     }
 
     public function storeAjax(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6',
-        'role_id' => 'required|exists:roles,id',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'role_id' => 'required|exists:roles,id',
+        ]);
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-    $user->roles()->attach($request->role_id);
+        $user->roles()->attach($request->role_id);
 
-    return response()->json([
-        'success' => true,
-        'message' => 'User berhasil ditambahkan!',
-        'data' => [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'role' => $user->roles->first()->name
-        ]
-    ]);
-}
+        return response()->json([
+            'success' => true,
+            'message' => 'User berhasil ditambahkan!',
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->roles->first()->name
+            ]
+        ]);
+    }
 }

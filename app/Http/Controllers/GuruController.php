@@ -85,48 +85,35 @@ class GuruController extends Controller
      */
     public function show($id)
     {
-        //
+        $guru = Guru::with('jabatans')->findOrFail($id);
+        return view('master.guru.show', compact('guru'));
+        // return $guru;
     }
 
-    public function edit(Guru $guru)
+    public function edit($id)
     {
+        $guru = Guru::with('jabatans')->findOrFail($id);
         $jabatans = Jabatan::all();
         return view('master.guru.edit', compact('guru', 'jabatans'));
     }
     /**
      * Update guru
      */
-    public function update(Request $request, Guru $guru)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'nip' => 'required|unique:guru,nip,' . $guru->id,
-            'nama_lengkap' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $guru->user_id,
-            'mata_pelajaran' => 'nullable|string',
-            'alamat' => 'nullable|string',
-            'no_hp' => 'nullable|string|max:20',
-            'jabatan' => 'required|array',
-        ]);
+        $guru = Guru::findOrFail($id);
 
-        // Update user
-        $guru->user->update([
-            'name' => $request->nama_lengkap,
-            'email' => $request->email,
-        ]);
-
-        // Update guru
         $guru->update([
-            'nip' => $request->nip,
             'nama_lengkap' => $request->nama_lengkap,
-            'mata_pelajaran' => $request->mata_pelajaran,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
+            'nip'          => $request->nip,
+            'alamat'       => $request->alamat,
+            'no_hp'        => $request->no_hp,
         ]);
 
-        // Update jabatan
+        // Sinkronisasi jabatan
         $guru->jabatans()->sync($request->jabatan);
 
-        return redirect()->route('master.guru.index')->with('success', 'Guru berhasil diperbarui');
+        return redirect()->route('master.guru.index')->with('success', 'Data guru berhasil diperbarui');
     }
 
     /**
