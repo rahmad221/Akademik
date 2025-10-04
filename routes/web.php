@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KelasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,9 @@ use App\Http\Controllers\GuruController;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/version', function () {
     return view('welcome');
 });
 
@@ -52,6 +56,8 @@ Route::middleware('auth')->group(function () {
 
         // route guru
         Route::resource('guru', GuruController::class)->names('master.guru');
+        // route kelas
+        Route::resource('kelas', KelasController::class)->names('master.kelas');
     });
 
     // Rute untuk logout

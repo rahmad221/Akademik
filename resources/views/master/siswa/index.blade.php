@@ -50,7 +50,7 @@
                                         Perempuan
                                         @endif
                                     </td>
-                                    <td>{{$sws->kelas->nama_kelas}}</td>
+                                    <td>{{$sws->kelas->nama_kelas ?? '-' }}</td>
                                     <td>{{$sws->tahun_pembelajaran}}</td>
                                     <td>
                                         <a type="button" href="{{ route('master.siswa.show',$sws->id) }}" class="btn btn-block bg-gradient-info btn-xs">Detail</a>

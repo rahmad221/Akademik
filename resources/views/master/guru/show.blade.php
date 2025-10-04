@@ -1,6 +1,7 @@
 @extends('layouts.menu')
 
 @section('content')
+<section class="content">
 <div class="container-fluid">
     <div class="card">
         <div class="card-header bg-primary text-white">
@@ -50,4 +51,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{url('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @endsection
 @section('content')
+<section class="content">
 <div class="container-fluid">
     <div class="card">
         <div class="card-header bg-warning">
@@ -54,6 +55,7 @@
         </form>
     </div>
 </div>
+</section>
 @endsection
 @section('script')
 <script src="{{url('assets/plugins/select2/js/select2.full.min.js')}}"></script>

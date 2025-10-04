@@ -8,7 +8,9 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      
+      <li class="nav-item d-flex align-items-center">
+                <a href="{{ url('/version') }}" target="_blank" class="text-dark" style="font-size: 14px;">Versi 1.0.0</a>
+              </li>
     </ul>
     
     <ul class="navbar-nav ml-auto">
@@ -120,18 +122,14 @@
                 </a>
               </li>
               @endpermission
+              @permission('index_guru')
               <li class="nav-item">
-              <a href="#" class="nav-link {{ request()->is('master/kelas*') ? 'active' : '' }}">
+              <a href="{{route('master.kelas.index')}}" class="nav-link {{ request()->is('master/kelas*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Kelas</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Mapel</p>
-                </a>
-              </li>
+              @endpermission
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -219,8 +217,7 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="https://cyberdeveloper.my.id/">cyberdeveloper</a>.</strong>
-    All rights reserved.
+    <strong>. &copy; 2025 <a href="https://cyberdeveloper.my.id/">cyberdeveloper</a>.</strong>
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
     </div>
