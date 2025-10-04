@@ -9,6 +9,8 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\JenisPembayaranController;
+use App\Http\Controllers\TransaksiPembayaranController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,6 +60,15 @@ Route::middleware('auth')->group(function () {
         Route::resource('guru', GuruController::class)->names('master.guru');
         // route kelas
         Route::resource('kelas', KelasController::class)->names('master.kelas');
+        // route jenis pembayaran
+        Route::resource('jenis-pembayaran', JenisPembayaranController::class)->names('master.jenis-pembayaran');
+    });
+    Route::group(['prefix' => 'keuangan'], function () {
+        // route pembayaran
+        Route::resource('pembayaran', TransaksiPembayaranController::class)->names('keuangan.pembayaran');
+        Route::get('/pembayaran/search-siswa', [TransaksiPembayaranController::class, 'searchSiswa'])->name('keuangan.pembayaran.searchSiswa');
+        Route::get('/pembayaran/history/{siswa}', [TransaksiPembayaranController::class, 'getHistory'])->name('keuangan.pembayaran.history');
+        
     });
 
     // Rute untuk logout

@@ -130,12 +130,14 @@
                 </a>
               </li>
               @endpermission
+              @permission('index_jenis')
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('master.jenis-pembayaran.index')}}" class="nav-link {{ request()->is('master/jenis-pembayaran*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pembayaran</p>
+                  <p>Jenis Pembayaran</p>
                 </a>
               </li>
+              @endpermission
             </ul>
           </li>
           <li class="nav-item has-treeview {{ request()->is('keuangan*') ? 'menu-open' : '' }}">
@@ -148,9 +150,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('keuangan/spp*') ? 'active' : '' }}">
+                <a href="{{route('keuangan.pembayaran.index')}}" class="nav-link {{ request()->is('keuangan/pembayaran*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Spp</p>
+                  <p>Pembayaran</p>
                 </a>
               </li>
               <li class="nav-item">

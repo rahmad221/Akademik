@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jenis_pembayaran', function (Blueprint $table) {
+        Schema::create('transaksi_pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pembayaran'); // contoh: SPP, Uang Gedung, dll
-            $table->decimal('jumlah', 12, 2)->default(0); // jumlah default
-            $table->text('keterangan')->nullable();
+            $table->unsignedBigInteger('siswa_id'); 
+            $table->date('tanggal_bayar');
+            $table->decimal('total_bayar', 12, 2)->default(0);
             $table->timestamps();
+        
+            $table->foreign('siswa_id')->references('id')->on('siswa')->onDelete('cascade');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis_pembayaran');
+        Schema::dropIfExists('transaksi_pembayaran');
     }
 };
