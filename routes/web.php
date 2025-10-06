@@ -64,11 +64,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('jenis-pembayaran', JenisPembayaranController::class)->names('master.jenis-pembayaran');
     });
     Route::group(['prefix' => 'keuangan'], function () {
-        // route pembayaran
-        Route::resource('pembayaran', TransaksiPembayaranController::class)->names('keuangan.pembayaran');
+        Route::get('/pembayaran', [TransaksiPembayaranController::class, 'index'])->name('keuangan.pembayaran.index');
+        Route::get('/pembayaran/create', [TransaksiPembayaranController::class, 'create'])->name('keuangan.pembayaran.create');
         Route::get('/pembayaran/search-siswa', [TransaksiPembayaranController::class, 'searchSiswa'])->name('keuangan.pembayaran.searchSiswa');
         Route::get('/pembayaran/history/{siswa}', [TransaksiPembayaranController::class, 'getHistory'])->name('keuangan.pembayaran.history');
-        
+        // Route::get('/pembayaran/tunggakan/{siswa}', [TransaksiPembayaranController::class, 'getTunggakan'])->name('keuangan.pembayaran.tunggakan');
+        Route::post('/pembayaran/store', [TransaksiPembayaranController::class, 'store'])->name('keuangan.pembayaran.store');
     });
 
     // Rute untuk logout

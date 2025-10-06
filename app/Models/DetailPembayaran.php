@@ -11,7 +11,15 @@ class DetailPembayaran extends Model
     protected $table = 'detail_pembayaran';
     protected $fillable = ['transaksi_id','jenis_pembayaran_id','periode','jumlah'];
 
-    public function jenisPembayaran() {
-        return $this->belongsTo(JenisPembayaran::class, 'jenis_pembayaran_id');
-    }
+   // relasi ke transaksi pembayaran
+   public function transaksi()
+   {
+       return $this->belongsTo(TransaksiPembayaran::class, 'transaksi_id');
+   }
+
+   // relasi ke jenis pembayaran
+   public function jenisPembayaran()
+   {
+       return $this->belongsTo(JenisPembayaran::class, 'jenis_pembayaran_id');
+   }
 }
