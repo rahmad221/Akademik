@@ -1,5 +1,5 @@
 @extends('layouts.menu')
-@section('title') Siswa @endsection
+@section('title') Pembayaran List @endsection
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">

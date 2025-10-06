@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/pembayaran/create', [TransaksiPembayaranController::class, 'create'])->name('keuangan.pembayaran.create');
         Route::get('/pembayaran/search-siswa', [TransaksiPembayaranController::class, 'searchSiswa'])->name('keuangan.pembayaran.searchSiswa');
         Route::get('/pembayaran/history/{siswa}', [TransaksiPembayaranController::class, 'getHistory'])->name('keuangan.pembayaran.history');
-        // Route::get('/pembayaran/tunggakan/{siswa}', [TransaksiPembayaranController::class, 'getTunggakan'])->name('keuangan.pembayaran.tunggakan');
+        Route::get('/pembayaran/tunggakan/{siswa}', [TransaksiPembayaranController::class, 'getTunggakan'])->name('keuangan.pembayaran.tunggakan');
         Route::post('/pembayaran/store', [TransaksiPembayaranController::class, 'store'])->name('keuangan.pembayaran.store');
     });
 
