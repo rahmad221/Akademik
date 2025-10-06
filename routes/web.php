@@ -11,6 +11,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\JenisPembayaranController;
 use App\Http\Controllers\TransaksiPembayaranController;
+use App\Http\Controllers\NilaiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,7 +72,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/pembayaran/tunggakan/{siswa}', [TransaksiPembayaranController::class, 'getTunggakan'])->name('keuangan.pembayaran.tunggakan');
         Route::post('/pembayaran/store', [TransaksiPembayaranController::class, 'store'])->name('keuangan.pembayaran.store');
     });
-
+    Route::group(['prefix' => 'akademik'], function () {
+        Route::resource('nilai', NilaiController::class)->names('akademik.nilai');
+    });
     // Rute untuk logout
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

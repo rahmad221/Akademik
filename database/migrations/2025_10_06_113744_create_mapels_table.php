@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama_mapel');
             $table->string('kategori')->nullable(); // contoh: Umum, Kejuruan, Agama
             $table->decimal('kkm', 5, 2)->default(75);
-            $table->foreignId('guru_id')->nullable()->constrained('gurus')->onDelete('set null'); // opsional
+            $table->foreignId('guru_id')->nullable()->constrained('guru')->onDelete('set null'); // opsional
             $table->timestamps();
         });
     }

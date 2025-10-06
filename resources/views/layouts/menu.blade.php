@@ -163,8 +163,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview {{ request()->is('akademik*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ request()->is('akademik*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Akademik
@@ -173,7 +173,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('akademik.nilai.index')}}" class="nav-link {{ request()->is('akademik/nilai*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Nilai & Raport</p>
                 </a>

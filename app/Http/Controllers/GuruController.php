@@ -66,7 +66,6 @@ class GuruController extends Controller
             'user_id' => $user->id,
             'nip' => $request->nip,
             'nama_lengkap' => $request->nama_lengkap,
-            'mata_pelajaran' => $request->mata_pelajaran,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
         ]);

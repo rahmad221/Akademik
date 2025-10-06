@@ -53,12 +53,6 @@
 
                                 {{-- Kolom Kanan --}}
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="mata_pelajaran">Mata Pelajaran</label>
-                                        <input type="text" class="form-control form-control-sm" id="mata_pelajaran" name="mata_pelajaran"
-                                            placeholder="Masukkan Mata Pelajaran" value="{{ old('mata_pelajaran') }}">
-                                        @error('mata_pelajaran') <small class="text-danger">{{ $message }}</small> @enderror
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="alamat">Alamat</label>

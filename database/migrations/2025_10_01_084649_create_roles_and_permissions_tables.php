@@ -22,7 +22,8 @@ return new class extends Migration
         // Permissions
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // manage_users, view_materi, dll
+            $table->string('nama')->unique(); // manage_users, view_materi, dll
+            $table->string('slug');
             $table->timestamps();
         });
 
