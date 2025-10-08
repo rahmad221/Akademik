@@ -148,6 +148,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            @permission('index_pembayaran')
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('keuangan.pembayaran.index')}}" class="nav-link {{ request()->is('keuangan/pembayaran*') ? 'active' : '' }}">
@@ -162,6 +163,7 @@
                 </a>
               </li>
             </ul>
+            @endpermission
           </li>
           <li class="nav-item has-treeview {{ request()->is('akademik*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ request()->is('akademik*') ? 'active' : '' }}">

@@ -38,7 +38,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
+                            @foreach($transaksi as $trs)
+                            <tr>
+                                <td>{{$trs->siswa->nama_lengkap}}</td>
+                                <td>{{$trs->siswa->kelas->nama_kelas}}</td>
+                                <td>{{$trs->total_bayar}}</td>
+                                <td>Cash</td>
+                                <td>1</td>
+                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -13,7 +13,8 @@ class TransaksiPembayaranController extends Controller
 {
     public function index()
     {
-        return view('pembayaran.index');
+        $transaksi=TransaksiPembayaran::with('siswa.kelas')->get();
+        return view('pembayaran.index',compact('transaksi'));
     }
 
     public function create()
