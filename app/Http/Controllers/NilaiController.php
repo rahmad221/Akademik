@@ -19,14 +19,8 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $nilais = Nilai::with(['siswa', 'mapel', 'jenisNilai'])->paginate(10);
-
-        // hitung rata-rata per siswa (contoh sederhana)
-        $rataNilai = $nilais->groupBy('siswa_id')->map(function($item){
-            return round($item->avg('nilai'), 2);
-        });
-
-        return view('nilai.index', compact('nilais', 'rataNilai'));
+        $nilai = Nilai::with(['mapel.guru', 'jenisNilai', 'siswa.kelas'])->get();
+        return view('nilai.index', compact('nilai'));
     }
 
     /**
@@ -36,7 +30,11 @@ class NilaiController extends Controller
      */
     public function create()
     {
-        //
+        $siswa = Siswa::all();
+        $jenisNilai = JenisNilai::all();
+        $mapel = Mapel::all();
+
+        return view('nilai.create', compact('siswa', 'jenisNilai', 'mapel'));
     }
 
     /**
@@ -47,7 +45,18 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'siswa_id' => 'required',
+            'jenis_nilai_id' => 'required',
+            'mapel_id' => 'required',
+            'nilai' => 'required|numeric|min:0|max:100',
+            'keterangan' => 'nullable|string',
+            'tanggal_input' => 'required|date',
+        ]);
+
+        Nilai::create($request->all());
+
+        return redirect()->back()->with('success', 'Data nilai berhasil disimpan!');
     }
 
     /**

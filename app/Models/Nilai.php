@@ -24,6 +24,11 @@ class Nilai extends Model
 
     public function jenisNilai()
     {
-        return $this->belongsTo(JenisNilai::class);
+        return $this->belongsTo(JenisNilai::class, 'jenis_nilai_id');
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class, 'mapel_id');
     }
 }

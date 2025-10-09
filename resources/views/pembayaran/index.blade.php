@@ -44,7 +44,10 @@
                                 <td>{{$trs->siswa->kelas->nama_kelas}}</td>
                                 <td>{{$trs->total_bayar}}</td>
                                 <td>Cash</td>
-                                <td>1</td>
+                                <td>
+                                <a href="#" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>

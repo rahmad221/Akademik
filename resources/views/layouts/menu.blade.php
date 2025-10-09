@@ -177,15 +177,15 @@
               <li class="nav-item">
                 <a href="{{route('akademik.nilai.index')}}" class="nav-link {{ request()->is('akademik/nilai*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Nilai & Raport</p>
+                  <p>Nilai</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kurikulum</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li class="nav-item has-treeview">

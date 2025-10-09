@@ -19,7 +19,7 @@ class Mapel extends Model
     // Relasi ke Guru (opsional)
     public function guru()
     {
-        return $this->belongsTo(Guru::class);
+        return $this->belongsTo(Guru::class, 'guru_id');
     }
 
     // Relasi ke Nilai

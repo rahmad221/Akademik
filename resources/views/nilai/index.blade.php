@@ -30,6 +30,7 @@
                         <table id="example2" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
+                                    <th class="text-center text-indigo">Nama Siswa</th>
                                     <th class="text-center text-indigo">Mata Pelajaran</th>
                                     <th class="text-center text-indigo">Jenis Nilai</th>
                                     <th class="text-center text-indigo">Kelas</th>
@@ -39,7 +40,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
+                            @foreach ($nilai as $n)
+                    <tr>
+                        <td>{{ $n->siswa->nama_lengkap ?? '-' }}</td>
+                        <td>{{ $n->mapel->nama_mapel ?? '-' }}</td>
+                        <td>{{ $n->jenisNilai->nama_jenis ?? '-' }}</td>
+                        <td>{{ $n->siswa->kelas->nama_kelas ?? '-' }}</td>
+                        <td>{{ $n->mapel->guru->nama_lengkap ?? '-' }}</td>
+                        <td>{{ \Carbon\Carbon::parse($n->tanggal_input)->format('d/m/Y') }}</td>
+                        <td>
+                            <a href="#" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
                             </tbody>
                         </table>
                     </div>
