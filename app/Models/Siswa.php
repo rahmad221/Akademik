@@ -20,4 +20,14 @@ class Siswa extends Model
     {
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'siswa_id');
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasMany(TransaksiPembayaran::class, 'siswa_id');
+    }
 }

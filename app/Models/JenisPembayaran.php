@@ -15,5 +15,9 @@ class JenisPembayaran extends Model
         'keterangan',
         'tipe_pembayaran',
     ];
-    
+
+    public function detail()
+    {
+        return $this->hasMany(DetailPembayaran::class, 'jenis_pembayaran_id');
+    }
 }

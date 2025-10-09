@@ -6,9 +6,9 @@
     <div class="container-fluid">
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Detail Siswa</h3>
+                <h4 class="card-title">Detail Siswa</h4>
                 @permission('edit_siswa')
-                <a href="{{ route('master.siswa.edit',$siswa->id) }}" class="btn btn-sm btn-warning float-right">Edit</a>
+                <a href="{{ route('master.siswa.edit',$siswa->id) }}" class="btn btn-xs btn-warning float-right">Edit</a>
                 @endpermission
             </div>
             <div class="card-body">
@@ -32,6 +32,99 @@
                         </table>
                     </div>
                 </div>
+
+                {{-- TAB MENU --}}
+                <ul class="nav nav-tabs mt-4" id="siswaTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nilai-tab" data-toggle="tab" href="#nilai" role="tab">History Nilai</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="bayar-tab" data-toggle="tab" href="#bayar" role="tab">History Pembayaran</a>
+                    </li>
+                </ul>
+
+                {{-- TAB CONTENT --}}
+                <div class="tab-content mt-3" id="siswaTabContent">
+
+                    {{-- HISTORY NILAI --}}
+                    <div class="tab-pane fade show active" id="nilai" role="tabpanel">
+                        <table class="table table-bordered table-striped">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Jenis Nilai</th>
+                                    <th>Nilai</th>
+                                    <th>Keterangan</th>
+                                    <th>Tanggal Input</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($siswa->nilai as $key => $n)
+                                    <tr>
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $n->mapel->nama_mapel ?? '-' }}</td>
+                                        <td>{{ $n->jenisNilai->nama_jenis ?? '-' }}</td>
+                                        <td>{{ $n->nilai ?? '-' }}</td>
+                                        <td>{{ $n->keterangan ?? '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($n->tanggal_input)->format('d/m/Y') }}</td>
+                                    </tr>
+                                @empty
+                                    <tr><td colspan="6" class="text-center">Belum ada data nilai</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{-- HISTORY PEMBAYARAN --}}
+                    <div class="tab-pane fade" id="bayar" role="tabpanel">
+                        <table class="table table-bordered table-striped">
+                            <thead class="bg-success text-white">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenis Pembayaran</th>
+                                    <th>Tanggal Bayar</th>
+                                    <th>Jumlah Bayar</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($siswa->pembayaran as $key => $b)
+<tr>
+    <td>{{ $key + 1 }}</td>
+    <td>
+        <ul class="mb-0">
+            @foreach($b->detail as $d)
+                <li>{{ $d->jenisPembayaran->nama_pembayaran ?? '-' }}</li>
+            @endforeach
+        </ul>
+    </td>
+    <td>{{ \Carbon\Carbon::parse($b->tanggal_bayar)->format('d/m/Y') }}</td>
+    <td>
+        <ul class="mb-0">
+            @foreach($b->detail as $d)
+                <li>Rp {{ number_format($d->jumlah, 0, ',', '.') }}</li>
+            @endforeach
+        </ul>
+    </td>
+    <td>
+        <ul class="mb-0">
+            @foreach($b->detail as $d)
+                <li>{{ $d->periode ?? '-' }}</li>
+            @endforeach
+        </ul>
+    </td>
+</tr>
+@empty
+<tr>
+    <td colspan="5" class="text-center">Belum ada data pembayaran</td>
+</tr>
+@endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

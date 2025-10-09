@@ -106,8 +106,9 @@ class SiswaController extends Controller
 
     public function show($id)
     {
-        $siswa = Siswa::with('user', 'kelas')->findOrFail($id);
+        $siswa = Siswa::with(['user', 'kelas', 'nilai.mapel', 'nilai.jenisNilai', 'pembayaran.detail.jenisPembayaran'])->findOrFail($id);
         return view('master.siswa.show', compact('siswa'));
+        // return $siswa->pembayaran->detail->jenisPembayaran;
     }
 
     public function edit($id)
