@@ -48,7 +48,7 @@
 
                     {{-- HISTORY NILAI --}}
                     <div class="tab-pane fade show active" id="nilai" role="tabpanel">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped table-sm">
                             <thead class="bg-primary text-white">
                                 <tr>
                                     <th>No</th>

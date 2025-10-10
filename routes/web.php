@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/pembayaran/history/{siswa}', [TransaksiPembayaranController::class, 'getHistory'])->name('keuangan.pembayaran.history');
         Route::get('/pembayaran/tunggakan/{siswa}', [TransaksiPembayaranController::class, 'getTunggakan'])->name('keuangan.pembayaran.tunggakan');
         Route::post('/pembayaran/store', [TransaksiPembayaranController::class, 'store'])->name('keuangan.pembayaran.store');
+        Route::any('/pembayaran/printBukti/{siswa}', [TransaksiPembayaranController::class, 'printBukti'])->name('keuangan.pembayaran.printBukti');
     });
     Route::group(['prefix' => 'akademik'], function () {
         Route::resource('nilai', NilaiController::class)->names('akademik.nilai');

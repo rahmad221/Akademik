@@ -8,6 +8,7 @@ use App\Models\Siswa;
 use App\Models\JenisPembayaran;
 use App\Models\TransaksiPembayaran;
 use App\Models\DetailPembayaran;
+use PDF;
 
 class TransaksiPembayaranController extends Controller
 {
@@ -144,5 +145,19 @@ class TransaksiPembayaranController extends Controller
         return response()->json($tunggakan);
     }
     
-
+    public function printBukti($pembayaran_id)
+    {
+        // $data['master']=BarangMasuk::find($key);
+        // $data['cust']=Supplier::find($data['master']['kode_supplier']);
+        // $data['detail'] = DetailBarangMasuk::where('kode_penerimaan',$key)->get();
+        
+        $headers = [
+            'Content-Type' => 'application/pdf'
+        ];
+        $pdf = PDF::loadView('pembayaran.print');
+        $pdf->setPaper('A5', 'landscape');
+        return $pdf->stream();
+        
+        // return view('pembayaran.print');
+    }
 }

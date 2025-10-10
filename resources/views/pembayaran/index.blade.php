@@ -42,11 +42,11 @@
                             <tr>
                                 <td>{{$trs->siswa->nama_lengkap}}</td>
                                 <td>{{$trs->siswa->kelas->nama_kelas}}</td>
-                                <td>{{$trs->total_bayar}}</td>
+                                <td class="text-right">{{number_format($trs->total_bayar, 2, ',', ' ')}}</td>
                                 <td>Cash</td>
                                 <td>
-                                <a href="#" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i></a>
+                                <button class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-primary btn-xs" onclick="printNota({{$trs->id}})"><i class="fas fa-print"></i></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -82,7 +82,6 @@ $.ajaxSetup({
 });
 
 $(function() {
-    bsCustomFileInput.init();
     $("#example1").DataTable();
     $('#example2').DataTable({
         "paging": true,
@@ -101,6 +100,9 @@ var Toast = Swal.mixin({
     timer: 3000
 });
 
+function printNota(key){
+    window.open('pembayaran/printBukti/' + key , '_blank');
+    }
 </script>
 @if(session('success'))
         <script>
